@@ -12,7 +12,7 @@ class DashingWidgetsViewsTestCase(TestCase):
         self.assertEqual(resp.status_code, 200)
 
     def test_google_accounts(self):
-        resp = self.client.get(reverse('dashing_widgets:google_accounts_widget'))
+        resp = self.client.get(reverse('dashing_widgets:adwords_accounts_widget'))
         self.assertEqual(resp.status_code, 200)
 
     def test_ad_groups(self):
