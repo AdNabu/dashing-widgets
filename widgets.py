@@ -43,7 +43,7 @@ class AdGroupCards(NumberWidgetMonth):
     title = 'AdGroups Created'
 
     def get_more_info(self):
-        return '%d ad groups' % AdGroup.objects.exclude(created_on__lt=self.first_day_of_month).count()
+        return '%d ad groups this month' % AdGroup.objects.exclude(created_on__lt=self.first_day_of_month).count()
 
     def get_value(self):
         return '%d' % AdGroup.objects.exclude(created_on__lt=datetime.today()-timedelta(days=7)).count()
@@ -56,7 +56,7 @@ class AdwordsAccountCards(NumberWidgetMonth):
     title = 'Adwords Accounts'
 
     def get_more_info(self):
-        return '%d Adwords accounts' % AdwordsAccount.objects.exclude(created_on__lt=self.first_day_of_month).count()
+        return '%d Adwords accounts this month' % AdwordsAccount.objects.exclude(created_on__lt=self.first_day_of_month).count()
 
     def get_value(self):
         return '%d' % AdwordsAccount.objects.exclude(created_on__lt=datetime.today()-timedelta(days=7)).count()
