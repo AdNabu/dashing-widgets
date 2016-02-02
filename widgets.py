@@ -30,13 +30,15 @@ class CampaignCards(NumberWidgetMonth):
     title = 'Campaigns Created'
 
     def get_more_info(self):
-        return '%d users this month' % Campaign.objects.exclude(created_on__lt=self.first_day_of_month).count()
+        return '%d campaigns this month' % Campaign.objects.filter(is_external=False).exclude(
+            created_on__lt=self.first_day_of_month).count()
 
     def get_value(self):
-        return '%d' % Campaign.objects.exclude(created_on__lt=datetime.today()-timedelta(days=7)).count()
+        return '%d' % Campaign.objects.filter(is_external=False).exclude(
+            created_on__lt=datetime.today() - timedelta(days=7)).count()
 
     def get_detail(self):
-        return '%d total campaigns' % Campaign.objects.count()
+        return '%d total campaigns' % Campaign.objects.filter(is_external=False).count()
 
 
 class AdGroupCards(NumberWidgetMonth):
@@ -46,20 +48,21 @@ class AdGroupCards(NumberWidgetMonth):
         return '%d ad groups this month' % AdGroup.objects.exclude(created_on__lt=self.first_day_of_month).count()
 
     def get_value(self):
-        return '%d' % AdGroup.objects.exclude(created_on__lt=datetime.today()-timedelta(days=7)).count()
+        return '%d' % AdGroup.objects.exclude(created_on__lt=datetime.today() - timedelta(days=7)).count()
 
     def get_detail(self):
         return '%d total ad groups' % AdGroup.objects.count()
 
 
 class AdwordsAccountCards(NumberWidgetMonth):
-    title = 'Adwords Accounts'
+    title = 'New Adwords Accounts'
 
     def get_more_info(self):
-        return '%d Adwords accounts this month' % AdwordsAccount.objects.exclude(created_on__lt=self.first_day_of_month).count()
+        return '%d adwords accounts this month' % AdwordsAccount.objects.exclude(
+            created_on__lt=self.first_day_of_month).count()
 
     def get_value(self):
-        return '%d' % AdwordsAccount.objects.exclude(created_on__lt=datetime.today()-timedelta(days=7)).count()
+        return '%d' % AdwordsAccount.objects.exclude(created_on__lt=datetime.today() - timedelta(days=7)).count()
 
     def get_detail(self):
-        return '%d total Adwords' % AdwordsAccount.objects.count()
+        return '%d total adwords accounts' % AdwordsAccount.objects.count()
